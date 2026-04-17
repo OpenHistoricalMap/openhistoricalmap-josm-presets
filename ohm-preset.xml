@@ -8,15 +8,19 @@
 -->
 
   <group name="OHM">
-  <!-- For dates with dashes in them already, e.g. "1776-07-04 - 2026-03-24" -->
-  <item name="Start+End Date with Month/Day" type="node,way,relation"
-        name_template="?{'{special:localName}' | ''}?{' [{start_date} – {end_date}]' | ' [{start_date} –]' | ' [– {end_date}]' | ''}"
-        name_template_filter="((start_date~&quot;.*-.*&quot;) | (end_date~&quot;.*-.*&quot;))"
-    />
-  <!-- For year-only dates, it looks better to drop the space: "1776-2026" -->
-  <item name="Start+End Date with Year" type="node,way,relation"
-        name_template="?{'{special:localName}' | ''}?{' [{start_date}–{end_date}]' | ' [{start_date}–]' | ' [–{end_date}]' | ''}"
-        name_template_filter="(start_date | end_date)"
-    />
+    <!-- For dates with dashes in them already, e.g. "1776-07-04 - 2026-03-24" -->
+    <item name="Start+End Date with Month/Day" type="node,way,relation"
+          name_template="?{'[{admin_level}] ' | type=chronology 'chrono ' | '{type} ' | ''}?{'{special:localName}' | '{network}{ref} {direction}' | '{network}{ref}' | ''}?{' [{start_date} – {end_date}]' | ' [{start_date} –]' | ' [– {end_date}]' | ''}"
+          name_template_filter="((start_date~&quot;.*-.*&quot;) | (end_date~&quot;.*-.*&quot;))"
+      />
+    <!-- For year-only dates, it looks better to drop the space: "1776-2026" -->
+    <item name="Start+End Date with Year" type="node,way,relation"
+          name_template="?{'[{admin_level}] ' | type=chronology 'chrono ' | '{type} ' | ''}?{'{special:localName}' | '{network}{ref} {direction}' | '{network}{ref}' | ''}?{' [{start_date}–{end_date}]' | ' [{start_date}–]' | ' [–{end_date}]' | ''}"
+          name_template_filter="(start_date | end_date)"
+      />
+    <item name="Chronology" type="relation" icon="presets/service/clock.svg">
+        <label text="Chronology relation" />
+        <key key="type" value="chronology" />
+    </item>
   </group>
 </presets>
